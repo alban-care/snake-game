@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/game.css" />
+    <script defer src="app.js"></script>
+  </head>
+  <body data-theme="dark">
+    <div class="container">
+      <div class="game flex flex-col">
+        <div class="panel flex flex-between">
+          <div class="score">
+            <span class="label">Score</span>
+            <span class="value">0</span>
+          </div>
+          <div class="high-score">
+            <span class="label">High Score</span>
+            <span class="value">0</span>
+          </div>
+        </div>
+        <div class="board"><!-- javascript --></div>
+        <div class="instructions flex flex-col flex-between">
+          <p class="text">Press spacebar to <span>start</span> the game</p>
+          <div class="controls flex flex-between">
+            <div class="control">
+              <span class="label">Up</span>
+              <span class="key">↑</span>
+            </div>
+            <div class="control">
+              <span class="label">Left</span>
+              <span class="key">←</span>
+            </div>
+            <div class="control">
+              <span class="label">Down</span>
+              <span class="key">↓</span>
+            </div>
+            <div class="control">
+              <span class="label">Right</span>
+              <span class="key">→</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
