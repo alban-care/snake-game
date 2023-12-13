@@ -224,7 +224,8 @@ function handleKeyPress(event) {
   }
 }
 
-// Utils
+/* Utils */
+
 /**
  * @name createEL
  * @param {string} tag
@@ -279,6 +280,42 @@ function preventFrogSpawnOnSnake(frog, snake) {
 }
 
 /**
+ * @name pressKeysThrottling
+ * @description Throttle keypress event to prevent multiple keypresses
+ * @param {function} callback
+ * @param {number} delay
+ * @returns {function} throttled function
+ */
+function pressKeysThrottling(callback, delay) {
+  let isThrottled = false,
+    args,
+    context;
+
+  function wrapper() {
+    if (isThrottled) {
+      args = arguments;
+      context = this;
+      return;
+    }
+
+    isThrottled = true;
+    callback.apply(this, arguments);
+
+    setTimeout(() => {
+      isThrottled = false;
+      if (args) {
+        wrapper.apply(context, args);
+        args = context = null;
+      }
+    }, delay);
+  }
+
+  return wrapper;
+}
+
+/* Utils End */
+
+/**
  * @name startGame
  * @returns {void}
  */
@@ -300,4 +337,7 @@ function restartGame() {
 // Init
 draw();
 
-document.addEventListener("keydown", handleKeyPress);
+document.addEventListener(
+  "keydown",
+  pressKeysThrottling(handleKeyPress, speed)
+);
